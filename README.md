@@ -13,4 +13,4 @@ Contém um script simples em python que exibe a clássica mensagem "Hello, world
 1. Certifique-se de ter o Python instalado.
 2. Abra o terminal e execute:
 3. ``` bash
-   python hello.world.py
+   python hello_world.py
