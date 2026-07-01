@@ -1,20 +1,17 @@
-# Laboratório de Estudos - Python
+# FirstProject - Sistema de Cadastro de Alunos
 
-Repositório criado para registrar minha evolução nos fundamentos de programação, lógica e manipulação de dados com Python.
+Este é o meu primeiro projeto focado em Engenharia de Software, desenvolvido em Python. O objetivo principal é aplicar conceitos fundamentais de programação, boas práticas de mercado e arquitetura de código resiliente.
 
-## 🚀 Projetos Atuais
+## 🚀 Funcionalidades Atuais
+* **Menu Interativo:** Navegação via terminal para gerenciamento do sistema.
+* **Cadastro de Alunos:** Coleta de nome, idade e nota dos estudantes.
 
-### 1. Sistema de Cadastro de Alunos (sistema.py)
-Um sistema interativo via terminal que permite gerenciar o cadastro de estudantes e calcular métricas da turma.
+## 🛡️ Conceitos de Engenharia Aplicados
+* **Tratamento de Erros e Exceções:** Implementação de blocos `try/except` para capturar falhas de entrada (`ValueError`), impedindo que o sistema quebre caso o usuário digite letras onde são esperados números.
+* **Validação de Regras de Negócio:** Aplicação de travas lógicas para garantir que dados façam sentido no mundo real (limitação de idade entre 1 e 120 anos, e notas entre 0.0 e 10.0).
+* **Princípio DRY (Don't Repeat Yourself):** Evitou-se a repetição de blocos de validação criando estruturas reaproveitáveis.
+* **Encapsulamento:** Isolamento da lógica complexa de validação em funções genéricas (`ler_inteiro` e `ler_float`), mantendo o fluxo do menu principal limpo, legível e focado apenas na execução do negócio.
 
-* *Conceitos Aplicados:*
-    * Loops infinitos controlados (while True e break).
-    * Estruturas de dados complexas (Listas contendo Dicionários).
-    * Manipulação de strings com f-strings.
-    * Conversão e tipagem de dados (float).
-    * Operações matemáticas e funções nativas (len()).
-
-## 🛠️ Como rodar o projeto
-Certifique-se de ter o Python instalado em sua máquina, abra o terminal na pasta do projeto e execute:
-```bash
-python sistema.py
+## 🛠️ Tecnologias Utilizadas
+* Python 3
+* Git & GitHub
