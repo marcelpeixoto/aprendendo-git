@@ -1,3 +1,25 @@
+def ler_inteiro(mensagem, mensagem_erro, minimo, maximo):
+    while True:
+        try:
+            valor = int(input(mensagem))
+            if minimo <= valor <= maximo:
+                return valor
+            print(f"A idade deve ser entre {minimo} e {maximo}.")
+
+        except ValueError:
+            print(mensagem_erro)
+
+def ler_float(mensagem, mensagem_erro, minimo, maximo):
+    while True:
+        try:
+            valor = float(input(mensagem))
+            if minimo <= valor <= maximo:
+                return valor
+            print(f"A nota deve ser entre {minimo} e {maximo}.")
+        except ValueError:
+            print(mensagem_erro)
+
+
 def exibir_menu():
     print("\n--- SISTEMA DE CADASTRO ---")
     print("1. Cadastrar aluno")
@@ -14,8 +36,11 @@ while True:
     if opcao == "1":
         #Vamos coletar os dados do aluno
         nome = input("Digite o nome do aluno: ")
-        idade = int(input("Digite a idade do aluno: "))
-        nota = float(input("Digite a nota do aluno: "))
+        idade = ler_inteiro("Digite a idade do aluno: ", "Idade inválida. Digite um número inteiro.(Exemplo: 20)", 1, 110)
+        nota = ler_float("Digite a nota do aluno: ", "Nota inválida. Digite um valor decimal.(Exemplo: 8.5)", 0, 10.0)
+        print(f"Nota {nota} cadastrada com sucesso!")
+
+                
         #Criando um dicionário para armazenar os dados do aluno
         aluno = {
             "nome": nome,
