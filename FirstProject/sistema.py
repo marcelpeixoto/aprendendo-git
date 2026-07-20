@@ -1,9 +1,9 @@
 import json
 import os
+# Cria/Define o caminho do arquivo JSON para armazenar os dados dos alunos
+CAMINHO_ARQUIVO = os.path.join(os.path.dirname(__file__), "alunos.json") 
 
-CAMINHO_ARQUIVO = os.path.join(os.path.dirname(__file__), "alunos.json")
-
-
+# Função para salvar os dados dos alunos em um arquivo JSON
 def salvar_dados(lista_alunos):
     try:
         with open(CAMINHO_ARQUIVO, "w", encoding="utf-8") as arquivo:
@@ -12,7 +12,7 @@ def salvar_dados(lista_alunos):
     except Exception as e:
         print(f"Erro ao salvar os dados: {e}")
 
-
+# Função para carregar os dados dos alunos de um arquivo JSON
 def carregar_dados():
     if not os.path.exists(CAMINHO_ARQUIVO) or os.path.getsize(CAMINHO_ARQUIVO) == 0:
         salvar_dados([])
@@ -34,7 +34,6 @@ def carregar_dados():
         print(f"Erro ao carregar os dados: {e}")
         return []
 
-
 def ler_inteiro(mensagem, mensagem_erro, minimo, maximo):
     while True:
         try:
@@ -44,7 +43,6 @@ def ler_inteiro(mensagem, mensagem_erro, minimo, maximo):
             print(f"A idade deve ser entre {minimo} e {maximo}.")
         except ValueError:
             print(mensagem_erro)
-
 
 def ler_float(mensagem, mensagem_erro, minimo, maximo):
     while True:
@@ -56,14 +54,36 @@ def ler_float(mensagem, mensagem_erro, minimo, maximo):
         except ValueError:
             print(mensagem_erro)
 
-
 def exibir_menu():
     print("\n--- SISTEMA DE CADASTRO ---")
     print("1. Cadastrar aluno")
     print("2. Listar alunos")
-    print("3. Sair")
+    print("3. Editar area de alunos")
+    print("4. Excluir alunos")
+    print("5. Sair")
 
+#Função para exclusão de alunos do sistema.
+def excluir_aluno(lista_alunos):
+        print("\n----------Excluir Aluno----------------\n")
+        nome_busca = input("Digite o nome do aluno a ser excluído: ")
 
+        aluno_encontrado = None
+
+        #Varremos a lista procurando o aluno pelo nome
+        for alunos in lista_alunos:
+            # usamos .lower() para ignorar letras maíusculas/minusculas desnecessárias.
+            if alunos['nome'].lower() == nome_busca.lower():
+                aluno_encontrado = alunos
+                break
+        
+        if aluno_encontrado:
+            lista_alunos.remove(aluno_encontrado)
+            salvar_dados(lista_alunos)
+            print(f"Aluno {aluno_encontrado["nome"]} removido com sucesso!")
+        else:
+            print("Aluno não encontrado no sistema")
+
+        
 def main():
     lista_alunos = carregar_dados()
 
@@ -97,9 +117,14 @@ def main():
                 print(f"\nMédia das notas: {media:.2f}")
             else:
                 print("Nenhum aluno cadastrado no sistema ainda.")
-        elif opcao == "3":
+        elif opcao == "5":
             print("Saindo do sistema...")
             break
+        elif opcao == "3":
+            print("Em breve: UPDATE de edição de alunos.")
+        elif opcao == "4":
+            excluir_aluno(lista_alunos)
+
         else:
             print("Opção inválida. Tente novamente.")
 
