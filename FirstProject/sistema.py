@@ -62,6 +62,36 @@ def exibir_menu():
     print("4. Excluir alunos")
     print("5. Sair")
 
+def editar_aluno(lista_alunos):
+    print("\n-----------------Editar aluno---------------")
+    busca_editar = input("Digite o nome do aluno a ser editado: ")
+
+    aluno_achado = None
+
+    for alunos in lista_alunos:
+        if alunos["nome"].lower() == busca_editar.lower():
+            aluno_achado = alunos
+            break
+    
+    if aluno_achado:
+        print(f"Aluno encontrado: {aluno_achado['nome']}")
+        print("Digite as novas informações: ")
+
+        novo_nome = input("Digite o novo nome: ")
+        nova_idade = ler_inteiro("Digite a nova idade: ", "Idade inválida. Digite um número inteiro.(Exemplo: 20)", 1, 110)
+        nova_nota = ler_float("Digite a nova nota: ", "Nota inválida. digite novamente", 0, 10.0)
+
+        aluno_achado["nome"] = novo_nome
+        aluno_achado["idade"] = nova_idade
+        aluno_achado["nota"] = nova_nota
+
+        salvar_dados(lista_alunos)
+        print("\nDados atualizados com sucesso!")
+    else:
+        print("Aluno não encontrado no sistema.")
+
+
+
 #Função para exclusão de alunos do sistema.
 def excluir_aluno(lista_alunos):
         print("\n----------Excluir Aluno----------------\n")
@@ -121,7 +151,7 @@ def main():
             print("Saindo do sistema...")
             break
         elif opcao == "3":
-            print("Em breve: UPDATE de edição de alunos.")
+            editar_aluno(lista_alunos)
         elif opcao == "4":
             excluir_aluno(lista_alunos)
 

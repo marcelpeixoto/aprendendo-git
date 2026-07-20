@@ -7,6 +7,8 @@ Este é o meu primeiro projeto focado em Engenharia de Software, desenvolvido em
 * **Cadastro de Alunos:** Coleta de nome, idade e nota dos estudantes com validação em tempo real.
 * **Listagem Inteligente:** Exibição de todos os alunos cadastrados e cálculo automático da média da turma.
 * **Persistência Automática:** Os dados não se perdem ao fechar o terminal; são salvos e carregados de forma transparente.
+* **Edicão ou exclusão de cadastros de alunos:** Apaga ou edita os cadastros e salva o arquivo novamente.
+
 
 ## 🛡️ Conceitos de Engenharia Aplicados
 * **Tratamento de Erros e Exceções:** Uso de blocos `try/except` para capturar falhas de entrada (`ValueError`), impedindo o travamento do sistema caso o usuário digite letras onde são esperados números. Trata também exceções de ficheiros corrompidos (`JSONDecodeError`).
