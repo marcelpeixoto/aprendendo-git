@@ -34,6 +34,7 @@ def carregar_dados():
         print(f"Erro ao carregar os dados: {e}")
         return []
 
+#Tratamento de erros para a idade dos alunos
 def ler_inteiro(mensagem, mensagem_erro, minimo, maximo):
     while True:
         try:
@@ -44,6 +45,7 @@ def ler_inteiro(mensagem, mensagem_erro, minimo, maximo):
         except ValueError:
             print(mensagem_erro)
 
+#Tratamento de erros para as notas do programa
 def ler_float(mensagem, mensagem_erro, minimo, maximo):
     while True:
         try:
@@ -54,6 +56,7 @@ def ler_float(mensagem, mensagem_erro, minimo, maximo):
         except ValueError:
             print(mensagem_erro)
 
+# Função para a exibição do menu
 def exibir_menu():
     print("\n--- SISTEMA DE CADASTRO ---")
     print("1. Cadastrar aluno")
@@ -62,6 +65,7 @@ def exibir_menu():
     print("4. Excluir alunos")
     print("5. Sair")
 
+#  Função para editar uma lista pré existente
 def editar_aluno(lista_alunos):
     print("\n-----------------Editar aluno---------------")
     busca_editar = input("Digite o nome do aluno a ser editado: ")
@@ -90,7 +94,36 @@ def editar_aluno(lista_alunos):
     else:
         print("Aluno não encontrado no sistema.")
 
+# cadastro de alunos
+def cadastro_alunos(lista_alunos):
+    nome = input("Digite o nome do aluno: ")
+    idade = ler_inteiro("Digite a idade do aluno: ", "Idade inválida. Digite um número inteiro.(Exemplo: 20)", 1, 110)
+    nota = ler_float("Digite a nota do aluno: ", "Nota inválida. Digite um valor decimal.(Exemplo: 8.5)", 0, 10.0)
+    print(f"Nota {nota} cadastrada com sucesso!")
 
+    aluno = {
+        "nome": nome,
+        "idade": idade,
+        "nota": nota,
+        }
+    lista_alunos.append(aluno)
+    print(f"aluno {nome} cadastrado com sucesso!")
+    salvar_dados(lista_alunos)
+
+# Funcão para a listagem das notas e médias dos alunos
+def lista_notas(lista_alunos):
+    print("\n--- LISTA DE ALUNOS ---")
+    if lista_alunos:
+        soma_notas = 0
+        for aluno in lista_alunos:
+            soma_notas += aluno["nota"]
+            print(f"Nome: {aluno['nome']}, Idade: {aluno['idade']}, Nota: {aluno['nota']}")
+
+        media = soma_notas / len(lista_alunos)
+        print(f"\nMédia das notas: {media:.2f}")
+
+    else:
+        print("Nenhum aluno cadastrado no sistema ainda.")
 
 #Função para exclusão de alunos do sistema.
 def excluir_aluno(lista_alunos):
@@ -113,7 +146,7 @@ def excluir_aluno(lista_alunos):
         else:
             print("Aluno não encontrado no sistema")
 
-        
+#Função onde nosso programa roda e chama as outras funções definidas.
 def main():
     lista_alunos = carregar_dados()
 
@@ -122,31 +155,11 @@ def main():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            nome = input("Digite o nome do aluno: ")
-            idade = ler_inteiro("Digite a idade do aluno: ", "Idade inválida. Digite um número inteiro.(Exemplo: 20)", 1, 110)
-            nota = ler_float("Digite a nota do aluno: ", "Nota inválida. Digite um valor decimal.(Exemplo: 8.5)", 0, 10.0)
-            print(f"Nota {nota} cadastrada com sucesso!")
+            cadastro_alunos(lista_alunos)
 
-            aluno = {
-                "nome": nome,
-                "idade": idade,
-                "nota": nota,
-            }
-            lista_alunos.append(aluno)
-            print(f"aluno {nome} cadastrado com sucesso!")
-            salvar_dados(lista_alunos)
         elif opcao == "2":
-            print("\n--- LISTA DE ALUNOS ---")
-            if lista_alunos:
-                soma_notas = 0
-                for aluno in lista_alunos:
-                    soma_notas += aluno["nota"]
-                    print(f"Nome: {aluno['nome']}, Idade: {aluno['idade']}, Nota: {aluno['nota']}")
+            lista_notas(lista_alunos)
 
-                media = soma_notas / len(lista_alunos)
-                print(f"\nMédia das notas: {media:.2f}")
-            else:
-                print("Nenhum aluno cadastrado no sistema ainda.")
         elif opcao == "5":
             print("Saindo do sistema...")
             break
