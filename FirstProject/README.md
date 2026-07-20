@@ -55,13 +55,15 @@ Controle de Versão: Git & GitHub
 
 ```Bash
 git clone git clone https://github.com/marcelpeixoto/aprendendo-git.git
+```
 
 2. Acesse a pasta do projeto:
 
 ```Bash
 cd FirstProject
-
+```
 3. Execute o script:
 
 ```Bash
 python main.py
+```
