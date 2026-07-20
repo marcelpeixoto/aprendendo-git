@@ -53,15 +53,15 @@ Controle de Versão: Git & GitHub
 🔧 Como Executar o Projeto
 1. Clone o repositório:
 
-Bash
+```Bash
 git clone git clone https://github.com/marcelpeixoto/aprendendo-git.git
 
 2. Acesse a pasta do projeto:
 
-Bash
+```Bash
 cd FirstProject
 
 3. Execute o script:
 
-Bash
+```Bash
 python main.py
